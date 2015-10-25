@@ -3,7 +3,9 @@
  */
 
 // declare dependency to angular (similar to import in java)
-define(['frameworks/angular', 'application/listController'], function(Angular, EventListController) {
+
+
+define(['frameworks/angular', 'app/controllers/EventListController'], function(Angular, EventListController) {
 
     // Create new empty app/module named 'lafete'
     var Lafete = Angular.module('lafete', []);
