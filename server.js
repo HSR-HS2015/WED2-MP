@@ -16,6 +16,7 @@ var allowCrossDomain = function(request, response, next) {
  * Event / guest storage
  */
 var eventId = 0;
+var guestId = 0;
 var events = [];
 
 function createEvent(id, name, description, targetGroup, contributionsDescription, location, times){
@@ -43,18 +44,26 @@ function findEvent(id) {
     })[0];
 }
 
-function createGuest(event, name, contribution, comment){
+function createGuest(event, id, name, contribution, comment){
     if(event && event.guests) {
         var guest = {
+			id: (id) ? id : ++guestId,
             name : name,
             contribution: contribution,
-            comment: comment
+            comment: comment,
+			canceled: false
         };
         event.guests.push(guest);
         return guest;
     } else {
         return null;
     }
+}
+
+function findGuest(event, guestId) {
+	return event.guests.filter(function(guest) {
+		return guest.id == guestId
+	})[0];
 }
 
 
@@ -78,8 +87,8 @@ var event1 = createEvent(
         end: new Date('2011-11-16T03:00:00')
     }
 );
-createGuest(event1, "Michael", "Schoggi-Kuchen", "Bin sicher zu früh" );
-createGuest(event1, "Hans", "Hotdog-Cake", null );
+createGuest(event1, null, "Michael", "Schoggi-Kuchen", "Bin sicher zu früh" );
+createGuest(event1, null, "Hans", "Hotdog-Cake", null );
 
 var event2 = createEvent(
     null,
@@ -99,7 +108,7 @@ var event2 = createEvent(
     }
 );
 
-createGuest(event2, "F. Meier", null, null );
+createGuest(event2, null, "F. Meier", null, null );
 
 
 /**
@@ -148,6 +157,33 @@ app.get('/api/events/:id', function(request, response) {
     }
 });
 
+app.post('/api/events/:id', function(request, response) {
+	var event = findEvent(request.params.id);
+	if (event) {
+		if(request.body.name && request.body.name != event.name) {
+			event.name = request.body.name;
+		}
+		if(request.body.description && request.body.description != event.description) {
+			event.description = request.body.description;
+		}
+		if(request.body.targetGroup && event.targetGroup != request.body.targetGroup) {
+			event.targetGroup = request.body.targetGroup;
+		}
+		if(request.body.contributionsDescription && event.contributionsDescription != request.body.contributionsDescription) {
+			event.contributionsDescription = request.body.contributionsDescription;
+		}
+		if(request.body.location && event.location != request.body.location) {
+			event.location = request.body.location;
+		}
+		if(request.body.times && event.times != request.body.times) {
+			event.times = request.body.times;
+		}		
+		response.json(event);
+	} else {
+		response.status(404).send('Event (id '+request.params.id+') not found.')
+	}
+});
+
 app.get('/api/events/:id/guests', function(request, response) {
     var event = findEvent(request.params.id);
     if(event){
@@ -161,13 +197,56 @@ app.post('/api/events/:id/guests', function(request, response) {
     var event = findEvent(request.params.id);
     if(event){
         response.json(createGuest(
-            event,request.body.name,
+            event,
+			request.body.id,
+			request.body.name,
             request.body.contribution,
             request.body.comment
         ));
     } else{
         response.status(404).send('Event (id '+request.params.id+') not found.')
     }
+});
+
+app.get('/api/events/:eventId/guests/:guestId', function(request, response) {
+	var event = findEvent(request.params.eventId);
+	if(event){
+		var guest = findGuest(event, request.params.guestId);
+		if(guest) {
+			response.json(guest);
+		} else {
+			response.status(404).send('Guest (id '+request.params.guestId+') not found.')
+		}
+	} else{
+		response.status(404).send('Event (id '+request.params.eventId+') not found.')
+	}
+});
+
+app.post('/api/events/:eventId/guests/:guestId', function(request, response) {
+	var event = findEvent(request.params.eventId);
+	if(event){
+		var guest = findGuest(event, request.params.guestId);
+		if(guest) {
+			if(request.body.name && request.body.name != guest.name) {
+				guest.name = request.body.name;
+			}
+			if(request.body.contribution && request.body.contribution != guest.contribution) {
+				guest.contribution = request.body.contribution;
+			}
+			if(request.body.comment && request.body.comment != guest.comment) {
+				guest.comment = request.body.comment;
+			}
+			if(request.body.canceled && request.body.canceled != guest.canceled) {
+				guest.canceled = request.body.canceled;
+			}
+			
+			response.json(guest);
+		} else {
+			response.status(404).send('Guest (id '+request.params.guestId+') not found.')
+		}
+	} else{
+		response.status(404).send('Event (id '+request.params.eventId+') not found.')
+	}
 });
 
 

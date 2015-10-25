@@ -9,7 +9,9 @@
 			<dt>All events</dt>
 			<dd>GET /api/events<br />
 				<i>Example</i>:
-				<a href="http://localhost:8080/api/events">localhost:8080/api/events</a>/</dd>
+				<a href="http://localhost:8080/api/events">localhost:8080/api/events</a>
+			</dd>
+			
 			<dt>Add event</dt>
 			<dd>POST /api/events/<br />
 				<i>Example</i>:
@@ -17,19 +19,48 @@
 				Header: <code>Content-Type: application/json</code>
 				Body: <code>{ "name": "Dinner", "description": "...", "times":{"begin":"2015-11-15T19:00:00.000Z","end":"2011-11-16T03:00:00.000Z"}, "location", { ... }, ... }</code>
 			</dd>
+			
 			<dt>Event by id</dt>
 			<dd>GET /api/events/{eventID}<br />
 				<i>Example</i>:
-				<a href="http://localhost:8080/api/events/1">localhost:8080/api/events/1</a></dd>
+				<a href="http://localhost:8080/api/events/1">localhost:8080/api/events/1</a>
+			</dd>
+			
+			<dt>Update event</dt>
+			<dd>POST /api/events/{eventID}<br />
+				<i>Example</i>:
+				POST http://localhost:8080/api/events/1
+				Header: <code>Content-Type: application/json</code>
+				Body: <code>{ "description": "new Description", "location", { city: "new City", ... } }</code>
+			</dd>
+				
 			<dt>Guests of one event</dt>
 			<dd>GET /api/events/{eventID}/guests<br />
 				<i>Example</i>:
-				<a href="http://localhost:8080/api/events/1/guests">localhost:8080/api/events/1/guests</a></dd>
+				<a href="http://localhost:8080/api/events/1/guests">localhost:8080/api/events/1/guests</a>
+			</dd>
+				
 			<dt>Add guest</dt>
 			<dd>POST /api/events/{eventID}/guests<br />
-				<i>Example</i>: POST http://localhost:8080/api/events/1/guests
+				<i>Example</i>: 
+				POST http://localhost:8080/api/events/1/guests
 				Header: <code>Content-Type: application/json</code>
 				Body: <code>{ "name": "Diana", "gift": "Cake", "comment": "" }</code>
+			</dd>
+			
+			<dt>Guest by id</dt>
+			<dd>GET /api/events/{eventID}/guests/{guestID}<br />
+				<i>Example</i>:
+				<a href="http://localhost:8080/api/events/1/guests/1">localhost:8080/api/events/1/guests/1</a>
+			</dd>
+			
+			<dt>Update guest</dt>
+			<dd>POST /api/events/{eventID}/guests/{guestID}<br />
+				<i>Example</i>:
+				POST http://localhost:8080/api/events/1/guests/1,
+				Header: <code>Content-Type: application/json</code>
+				Body: <code>{ "canceled": true }</code>
+			</dd>
 			</dd>
 		</dl>
 	</body>
