@@ -5,18 +5,13 @@
 // declare dependency to angular (similar to import in java)
 
 
-define(['frameworks/angular', 'app/controllers/EventListController'], function(Angular, EventListController) {
+define(['frameworks/angular', 'app/controllers/eventListController'],
+    function (Angular, EventListController) {
+        'use strict';
 
-    // Create new empty app/module named 'lafete'
-    var Lafete = Angular.module('lafete', []);
+        var Lafete = Angular.module('lafete', []);
+        Lafete.controller('EventListController', EventListController);
+        EventListController.$inject = ['$scope'];
 
-    EventListController.$inject = ['$scope'];
-
-    Lafete.controller( // Controller
-        'EventListController',
-        EventListController
-    );
-
-    // export module to use it in other classes
-    return Lafete;
-});
+        return Lafete;
+    });

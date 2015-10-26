@@ -2,15 +2,16 @@
  * Created by silvanadrian on 25/10/15.
  */
 
-define([], function () {
+define(['app/controllers/eventListController'], function (EventListController) {
     'use strict';
-    beforeEach(module("lafete"));
+
     describe('EventListController', function() {
-        var scope = {};
-        var eventController = new EventListController(scope);
         describe('property scope', function() {
             it('contains 3 events', function() {
-                expect(length(eventController)).toBe(3);
+                var scope = {};
+                var eventListController = new EventListController(scope);
+
+                expect(3).toBe(eventListController.scope.events.length);
             });
         });
     });
