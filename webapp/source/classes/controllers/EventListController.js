@@ -2,7 +2,7 @@
  * Created by silvanadrian on 25/10/15.
  */
 
-define([], function() {
+define(['app/model/event'], function() {
     'use strict';
 
     var EventListController = function($scope) {
