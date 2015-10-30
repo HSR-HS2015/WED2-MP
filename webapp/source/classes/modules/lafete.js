@@ -1,17 +1,35 @@
-/**
- * Created by silvanadrian on 25/10/15.
- */
+define(['frameworks/angular', 'app/controllers/event/listController', 'app/controllers/event/detailController', 'app/repository/eventRepository', 'libraries/angularRoute'],
+	function (Angular, EventListController, EventDetailController, EventRepository) {
+	'use strict';
 
-// declare dependency to angular (similar to import in java)
+	/* modules */
+	var Lafete = Angular.module('lafete',['ngRoute']);
 
+	/* services */
+	EventRepository.$inject = ['$http'];
+	Lafete.service('EventRepository', EventRepository);
 
-define(['frameworks/angular', 'app/controllers/eventListController'],
-    function (Angular, EventListController) {
-        'use strict';
+	/* controllers */
+	EventListController.$inject = ['$scope', 'EventRepository'];
+	Lafete.controller('EventListController', EventListController);
 
-        var Lafete = Angular.module('lafete', []);
-        Lafete.controller('EventListController', EventListController);
-        EventListController.$inject = ['$scope'];
+	EventDetailController.$inject = ['$scope', '$routeParams', 'EventRepository'];
+	Lafete.controller('EventDetailController', EventDetailController);
 
-        return Lafete;
-    });
+	/* routes */
+	Lafete.config(function($routeProvider) {
+		$routeProvider.when('/list', {
+			controller: 'EventListController',
+			templateUrl: '/views/event/list.html'
+		})
+		.when('/events/:eventId', {
+			controller: 'EventDetailController',
+			templateUrl: '/views/event/detail.html'
+		})
+		.otherwise({
+			redirectTo: '/list'
+		});
+	});
+
+	return Lafete;
+});

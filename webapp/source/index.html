@@ -3,31 +3,9 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Lafete</title>
-
 	</head>
 	<body>
-		<div data-ng-app="lafete">
-			<h2>Events</h2>
-			<p><strong>TODO</strong> implement app.</p>
-
-			<h3>API to use</h3>
-			<dl data-ng-init="apiRoutes = [{name:'events', url:'/api/events'}, {name:'event 1', url:'/api/events/1'}, {name:'guests of event 1', url:'/api/events/1/guests'}]">
-				<dt data-ng-repeat-start="apiRoute in apiRoutes" data-ng-bind="apiRoute.name"></dt>
-				<dd data-ng-repeat-end><a href="{{ apiRoute.url}}">{{apiRoute.url}}</a></dd>
-			</dl>
-
-
-			<div ng-controller="EventListController">
-				<ul ng-repeat="event in events">
-					<li>{{event.name}} {{ event.place }} {{event.date | date: "dd.MM.yy"}}</li>
-				</ul>
-			</div>
-
-		</div>
-
-
-
-
-		<script src="./libraries/requirejs/require-js.min.js" data-main="./classes/main.js"></script>
+		<div ng-view></div>
+		<script src="./libraries/require/require.js" data-main="./classes/main.js"></script>
 	<body>
 </html>
