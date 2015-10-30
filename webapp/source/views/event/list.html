@@ -1,8 +1,9 @@
-<h1>Lafete</h1>
+<div class="row">
 <ul>
-	<li data-ng-repeat="event in events">
+	<li class="col-md-3 col-sm-6 event" data-ng-repeat="event in events">
 		<a data-ng-href="#/events/{{event.id}}"><strong>{{event.name}}</strong></a><br />
 		{{event.location.name}}, {{event.location.street}}, {{event.location.plz}} {{event.location.city}}<br />
 		{{event.times.begin | date:"dd.MM.yy HH:mm"}} - {{event.times.end | date:"dd.MM.yy HH:mm"}}
 	</li>
 </ul>
+</div>
