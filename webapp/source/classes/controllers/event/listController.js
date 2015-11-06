@@ -3,9 +3,12 @@ define(['app/model/event'], function(Event) {
 
 	var EventListController = function($scope, eventRepository) {
 		this.scope = $scope;
-		eventRepository.all(function(events) {
-			this.scope.events = events;
-		}.bind(this));
+		eventRepository.all(
+			function(events) {
+				this.scope.events = events;
+			}.bind(this),
+			function() {}
+		);
 	};
 
 	return EventListController;

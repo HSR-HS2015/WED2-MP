@@ -1,9 +1,15 @@
-<div class="row">
-<ul>
-	<li class="col-md-3 col-sm-6 event" data-ng-repeat="event in events">
-		<a data-ng-href="#/events/{{event.id}}"><strong>{{event.name}}</strong></a><br />
+
+<div class="col-xs-12">
+	<h2>Events</h2>
+
+	</div>
+
+
+<ul class="col-xs-12">
+	<li class="col-md-3 col-sm-6 col-xs-12 event" data-ng-repeat="event in events">
+		<a data-ng-href="#/events/{{event.id}}"><h5>{{event.name}}</h5>
 		{{event.location.name}}, {{event.location.street}}, {{event.location.plz}} {{event.location.city}}<br />
 		{{event.times.begin | date:"dd.MM.yy HH:mm"}} - {{event.times.end | date:"dd.MM.yy HH:mm"}}
+		</a>
 	</li>
 </ul>
-</div>

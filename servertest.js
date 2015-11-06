@@ -2,21 +2,21 @@ var http = require('http');
 
 
 var postOptions = {
-    host: 'localhost',
-    port: '8080',
-    path: '/api/events',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    }
+	host: 'localhost',
+	port: '8080',
+	path: '/api/events',
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json'
+	}
 };
 
 
 var postRequest = http.request(postOptions, function(response) {
-    response.setEncoding('utf8');
-    response.on('data', function (chunk) {
-      console.log('Response: ' + chunk);
-    });
+	response.setEncoding('utf8');
+	response.on('data', function (chunk) {
+		console.log('Response: ' + chunk);
+	});
 });
 
 // post the data
@@ -26,20 +26,20 @@ postRequest.end();
 
 
 var postOptions = {
-    host: 'localhost',
-    port: '8080',
-    path: '/api/events/2/guests',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    }
+	host: 'localhost',
+	port: '8080',
+	path: '/api/events/2/guests',
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json'
+	}
 };
 
 var postRequest = http.request(postOptions, function(response) {
-    response.setEncoding('utf8');
-    response.on('data', function (chunk) {
-        console.log('Response: ' + chunk);
-    });
+	response.setEncoding('utf8');
+	response.on('data', function (chunk) {
+		console.log('Response: ' + chunk);
+	});
 });
 
 // post the data

@@ -1,12 +1,12 @@
 define(['app/services/uuidService'], function(UUIDService) {
 	'use strict';
 
-	var Event = function(name, description, targetGroup, eventGift, location, times, maximalAmoutOfGuests, id) {
+	var Event = function(name, description, targetGroup, contributionsDescription, location, times, maximalAmoutOfGuests, id) {
 		this.id = id || UUIDService.getRandomUuid();
 		this.name = name;
 		this.description = description;
 		this.targetGroup = targetGroup;
-		this.eventGift = eventGift;
+		this.contributionsDescription = contributionsDescription;
 		this.location = location;
 		this.times = times;
 		this.maximalAmoutOfGuests = maximalAmoutOfGuests;
@@ -33,17 +33,21 @@ define(['app/services/uuidService'], function(UUIDService) {
 	/**
 	 * Create Event object from data transfer object (json object)
 	 */
-	Event.createFromDTO = function(jsonData) {
-		return new Event(
-			jsonData.name,
-			jsonData.description,
-			jsonData.targetGroup,
-			jsonData.eventGift,
-			jsonData.location,
-			jsonData.times,
-			jsonData.maximalAmoutOfGuests,
-			jsonData.id
+	Event.createFromDTO = function(eventDTO) {
+		var event = new Event(
+			eventDTO.name,
+			eventDTO.description,
+			eventDTO.targetGroup,
+			eventDTO.contributionsDescription,
+			eventDTO.location,
+			eventDTO.times,
+			eventDTO.maximalAmoutOfGuests,
+			eventDTO.id
 		);
+		if(eventDTO.guests) {
+			event.guests = eventDTO.guests;
+		}
+		return event;
 	};
 
 	return Event;

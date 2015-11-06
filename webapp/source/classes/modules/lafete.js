@@ -5,8 +5,16 @@ define(['frameworks/angular', 'app/controllers/event/listController', 'app/contr
 	/* modules */
 	var Lafete = Angular.module('lafete',['ngRoute']);
 
+	Lafete.value('Configuration', {
+		urls: {
+			all: '/api/events',
+			byId: '/api/events/{eventId}',
+			add: '/api/events'
+		}
+	});
+
 	/* services */
-	EventRepository.$inject = ['$http'];
+	EventRepository.$inject = ['$http', 'Configuration'];
 	Lafete.service('EventRepository', EventRepository);
 
 	/* controllers */
@@ -18,7 +26,7 @@ define(['frameworks/angular', 'app/controllers/event/listController', 'app/contr
 
 	/* routes */
 	Lafete.config(function($routeProvider) {
-		$routeProvider.when('/list', {
+		$routeProvider.when('/events', {
 			controller: 'EventListController',
 			templateUrl: '/views/event/list.html'
 		})
@@ -27,7 +35,7 @@ define(['frameworks/angular', 'app/controllers/event/listController', 'app/contr
 			templateUrl: '/views/event/detail.html'
 		})
 		.otherwise({
-			redirectTo: '/list'
+			redirectTo: '/events'
 		});
 	});
 
