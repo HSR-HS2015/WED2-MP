@@ -1,5 +1,5 @@
-define(['frameworks/angular', 'app/controllers/event/listController', 'app/controllers/event/detailController','app/controllers/event/newController' ,'app/controllers/event/EventsController','app/repository/eventRepository', 'libraries/angularRoute'],
-	function (Angular, EventListController, EventDetailController, NewEventController,EventsController, EventRepository) {
+define(['frameworks/angular', 'app/controllers/event/listController', 'app/controllers/event/detailController','app/controllers/event/newController','app/repository/eventRepository', 'libraries/angularRoute'],
+	function (Angular, EventListController, EventDetailController, NewEventController, EventRepository) {
 	'use strict';
 
 	/* modules */
