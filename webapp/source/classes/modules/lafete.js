@@ -1,5 +1,5 @@
-define(['frameworks/angular', 'app/controllers/event/listController', 'app/controllers/event/detailController','app/controllers/event/newController','app/repository/eventRepository', 'libraries/angularRoute'],
-	function (Angular, EventListController, EventDetailController, NewEventController, EventRepository) {
+define(['frameworks/angular', 'app/controllers/event/listController', 'app/controllers/event/detailController','app/controllers/event/newController','app/repository/eventRepository', 'libraries/angularRoute', 'app/controllers/guest/newController'],
+	function (Angular, EventListController, EventDetailController, NewEventController, EventRepository, NewGuestController) {
 	'use strict';
 
 	/* modules */
@@ -42,7 +42,10 @@ define(['frameworks/angular', 'app/controllers/event/listController', 'app/contr
 			controller: 'EventDetailController',
 			templateUrl: '/views/event/detail.html'
 		})
-
+		.when('/events/:eventId/new', {
+			controller: 'newGuestController',
+			templateUrl: '/views/guest/edit.html'
+		})
 		.otherwise({
 			redirectTo: '/events'
 		});
