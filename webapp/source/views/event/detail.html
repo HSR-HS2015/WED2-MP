@@ -29,7 +29,7 @@
 		<h3>Date &amp; time</h3>
 		<p>{{event.begin | date:"dd.MM.yy HH:mm"}} - {{event.end | date:"dd.MM.yy HH:mm"}}</p>
 
-		<h3>Guests<a class="button add" href="#/events/{{event.id}}/guests">&#10133;</a></h3>
+		<h3>Guests<a class="button add" href="#/events/{{event.id}}/new">&#10133;</a></h3>
 		<p data-ng-if="event.guests && event.guests.length > 0" ng-repeat="guest in event.guests">
 			{{guest.name}}
 		</p>
