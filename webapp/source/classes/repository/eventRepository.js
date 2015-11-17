@@ -36,7 +36,7 @@ define(['app/model/event'], function(Event) {
 		 * Add event
 		 * @param Event event
 		 */
-		this.add = function(event, successCallback, errorCallback) {
+		this.addEvent = function(event, successCallback, errorCallback) {
 			$http.post(Configuration.urls.add, event)
 				.success(function(eventDTO) {
 					successCallback(Event.createFromDTO(eventDTO));
