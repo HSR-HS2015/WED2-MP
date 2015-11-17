@@ -1,0 +1,18 @@
+<h2>Add Guest</h2>
+<form class="pane">
+    <div class="formline">
+        <label>name</label>
+        <input type="text" data-ng-model="guest.name" required />
+    </div>
+    <div class="formline">
+        <label>contribution</label>
+        <input type="text" data-ng-model="event.contribution" required />
+    </div>
+    <div class="formline">
+        <label>comment</label>
+        <input type="text" data-ng-model="event.comment" required />
+    </div>
+    <div class="formline">
+        <input type="submit" data-ng-click="add(guest)" value="Save" />
+    </div>
+</form>
