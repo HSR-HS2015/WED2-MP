@@ -1,12 +1,12 @@
 define(['app/services/uuidService'], function(UUIDService) {
 	'use strict';
 
-	var Event = function(name, description, targetGroup, contribution, location, times, maximalAmoutOfGuests, id) {
+	var Event = function(name, description, targetGroup, contributionsDescription, location, times, maximalAmoutOfGuests, id) {
 		this.id = id || UUIDService.getRandomUuid();
 		this.name = name;
 		this.description = description;
 		this.targetGroup = targetGroup;
-		this.contribution = contribution;
+		this.contributionsDescription = contributionsDescription;
 		this.location = location;
 		this.times = times;
 		this.maximalAmoutOfGuests = maximalAmoutOfGuests;
@@ -38,7 +38,7 @@ define(['app/services/uuidService'], function(UUIDService) {
 			eventDTO.name,
 			eventDTO.description,
 			eventDTO.targetGroup,
-			eventDTO.contribution,
+			eventDTO.contributionsDescription,
 			eventDTO.location,
 			eventDTO.times,
 			eventDTO.maximalAmoutOfGuests,
