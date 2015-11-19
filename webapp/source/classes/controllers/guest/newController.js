@@ -14,7 +14,7 @@ define([], function() {
         );
 
 
-        this.scope.edit = function(event) {
+        this.scope.edit = function(guest) {
 
         };
 
