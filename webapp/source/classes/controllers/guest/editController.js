@@ -13,15 +13,27 @@ define([], function() {
             function() {}
         );
 
-        console.log($routeParams.guestId);
-        this.scope = $scope;
+
         EventRepository.getGuest(
+            { eventid:$routeParams.eventId },
             { id:$routeParams.guestId },
-            function(guest) {
-                this.scope.guest = guest;
+            function(event,guest) {
+                this.scope.guest = event;
             }.bind(this),
             function() {}
         );
+
+
+        this.scope.updateGuest = function(Oldevent,newGuest) {
+            EventRepository.updateGuest(
+                Oldevent,newGuest,
+                function(event) {
+                    $location.path('/events/' + $routeParams.eventId);
+                }
+                ,
+                function() {}
+            );
+        };
 
     };
 

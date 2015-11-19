@@ -14,10 +14,6 @@ define([], function() {
         );
 
 
-        this.scope.edit = function(guest) {
-
-        };
-
         this.scope.addGuest = function(Oldevent,newGuest) {
             EventRepository.addGuest(
                 Oldevent,newGuest,

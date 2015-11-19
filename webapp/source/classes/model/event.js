@@ -50,5 +50,6 @@ define(['app/services/uuidService'], function(UUIDService) {
 		return event;
 	};
 
+
 	return Event;
 });
