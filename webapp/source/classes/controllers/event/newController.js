@@ -8,7 +8,6 @@ define(['app/model/event'], function(Event) {
         this.scope.hours = this.createNumberSerie(0,1,23,2);
         this.scope.minutes = this.createNumberSerie(0,5,59,2);
         this.scope.event = new Event();
-        this.scope.guest = new Guest();
 
         this.scope.add = function(newEvent) {
             newEvent.times.begin = new Date(
@@ -37,15 +36,11 @@ define(['app/model/event'], function(Event) {
             );
         };
 
-        this.scope.edit = function(event) {
-
-        };
-
-        this.scope.addGuest = function(newGuest) {
-            newGuest.name;
-            newGuest.contribution;
-        }
     };
+
+
+
+
     NewEventController.prototype.createNumberSerie = function(start, step, end, digits) {
         digits = digits || 3;
         var serie = [];

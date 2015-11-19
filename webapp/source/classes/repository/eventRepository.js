@@ -32,14 +32,23 @@ define(['app/model/event'], function(Event) {
 				.error(errorCallback);
 		};
 
+
 		/**
 		 * Add event
 		 * @param Event event
 		 */
-		this.addEvent = function(event, successCallback, errorCallback) {
+		this.add = function(event, successCallback, errorCallback) {
 			$http.post(Configuration.urls.add, event)
 				.success(function(eventDTO) {
 					successCallback(Event.createFromDTO(eventDTO));
+				})
+				.error(errorCallback);
+		};
+
+		this.addGuest = function(event,guest,successCallback, errorCallback) {
+			$http.post(Configuration.urls.addGuest.replace('{eventId}',event.id),guest)
+				.success(function(guestDTO) {
+					successCallback(Event.createFromDTO(guestDTO));
 				})
 				.error(errorCallback);
 		};

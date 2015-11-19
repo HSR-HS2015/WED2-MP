@@ -1,3 +1,4 @@
+<h2>{{event.name}}</h2>
 <h2>Add Guest</h2>
 <form class="pane">
     <div class="formline">
@@ -6,13 +7,13 @@
     </div>
     <div class="formline">
         <label>contribution</label>
-        <input type="text" data-ng-model="event.contribution" required />
+        <input type="text" data-ng-model="guest.contribution" required />
     </div>
     <div class="formline">
         <label>comment</label>
-        <input type="text" data-ng-model="event.comment" required />
+        <input type="text" data-ng-model="guest.comment" required />
     </div>
     <div class="formline">
-        <input type="submit" data-ng-click="add(guest)" value="Save" />
+        <input type="submit" data-ng-click="addGuest(event,guest)" value="Save" />
     </div>
 </form>
