@@ -15,14 +15,18 @@ define([], function() {
 
 
         this.scope.addGuest = function(Oldevent,newGuest) {
-            EventRepository.addGuest(
-                Oldevent,newGuest,
-                function(event) {
-                    $location.path('/events/' + $routeParams.eventId);
-                }
-                ,
-                function() {}
-            );
+            window.alert(Oldevent.guests.length);
+            if(Oldevent.guests.length < Oldevent.maximalAmountOfGuests) {
+                EventRepository.addGuest(
+                    Oldevent,newGuest,
+                    function(event) {
+                        $location.path('/events/' + $routeParams.eventId);
+                    }
+                    ,
+                    function() {}
+                );
+            }
+
         };
     };
 
