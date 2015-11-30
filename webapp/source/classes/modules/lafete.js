@@ -23,6 +23,9 @@ define(['frameworks/angular', 'app/controllers/event/listController',
 	EventRepository.$inject = ['$http', 'Configuration'];
 	Lafete.service('EventRepository', EventRepository);
 
+	//GuestRepository.$inject = ['$http', 'Configuration'];
+	Lafete.service('GuestRepository', GuestRepository);
+
 	/* controllers */
 	EventListController.$inject = ['$scope', 'EventRepository'];
 	Lafete.controller('EventListController', EventListController);
@@ -33,10 +36,10 @@ define(['frameworks/angular', 'app/controllers/event/listController',
 	NewEventController.$inject = ['$scope', '$location', 'EventRepository'];
 	Lafete.controller('NewEventController', NewEventController);
 
-	NewGuestController.$inject = ['$scope', '$routeParams', '$location', 'GuestRepository'];
+	NewGuestController.$inject = ['$scope', '$routeParams', '$location', 'EventRepository','GuestRepository'];
 	Lafete.controller('NewGuestController', NewGuestController);
 
-	EditGuestController.$inject = ['$scope', '$routeParams', '$location', 'GuestRepository'];
+	EditGuestController.$inject = ['$scope', '$routeParams', '$location', 'GuestRepository','EventRepository'];
 	Lafete.controller('EditGuestController', EditGuestController);
 
 	/* routes */
