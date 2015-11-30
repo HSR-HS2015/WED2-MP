@@ -2,9 +2,13 @@
 <nav>
 	&larr; <a href="#/">Events</a>
 </nav>
-
-<h2>{{event.name}}</h2><a class ="button edit" href="#/events/{{event.id}}/edit">Edit</a>
-
+<div class="row">
+<div class="col-xs-6"><h2>{{event.name}}</h2></div>
+<div class="col-xs-6"><h2>{{filteredGuests.length}}
+	<span ng-if="filteredGuests.length > 1">Guests</span>
+	<span ng-if="filteredGuests.length <= 1">Guest</span>
+</h2></div>
+</div>
 
 	<p>{{event.description}}</p>
 	<p data-ng-if="event.maximalAmoutOfGuests">
@@ -30,14 +34,14 @@
 		<p>{{event.begin | date:"dd.MM.yy HH:mm"}} - {{event.end | date:"dd.MM.yy HH:mm"}}</p>
 
 		<h3>Guests<a class="button add" href="#/events/{{event.id}}/new">&#10133;</a></h3>
-		<div data-ng-if="event.guests && event.guests.length > 0" ng-repeat="guest in event.guests">
-			<div data-ng-if="guest.canceled == false">
-			<p><b>Name:</b> {{guest.name}}</p>
+		<div data-ng-if="event.guests && event.guests.length > 0" ng-repeat="guest in filteredGuests = (event.guests |filter:{canceled:'false'})">
+			<p>{{guest.name}}<span><a class ="button edit" href="#/events/{{event.id}}/guests/{{guest.id}}/edit">
+			<span class="glyphicon glyphicon-pencil"></span></a>
+			</span><a data-ng-click="cancel(guest)"> <span class="glyphicon glyphicon-remove-sign"></span></a>
+			</p>
 			<p><b>Contribution:</b> {{guest.contribution}}</p>
 			<p><b>Comment:</b> {{guest.comment}}</p>
 			<p>{{guest.canceled}}</p>
-			<p><a class ="button edit" href="#/events/{{event.id}}/guests/{{guest.id}}/edit"><span class="glyphicon glyphicon-pencil"></span></a></p>
-			<a data-ng-click="cancel(guest)"> <span class="glyphicon glyphicon-remove-sign"></span></a>
-			</div>
+
 		</div>
 
