@@ -31,8 +31,8 @@ define(['app/model/event'], function(Event) {
 		 *
 		 * @param string identifier
 		 */
-		this.get = function(event, successCallback, errorCallback) {
-			$http.get(this.urls.get.replace('{eventId}', event.id))
+		this.get = function(eventId, successCallback, errorCallback) {
+			$http.get(this.urls.get.replace('{eventId}', eventId))
 				.success(function(eventDTO) {
 					successCallback(Event.createFromDTO(eventDTO));
 				})

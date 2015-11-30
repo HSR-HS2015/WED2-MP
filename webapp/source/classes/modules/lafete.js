@@ -8,19 +8,11 @@ define(['frameworks/angular', 'app/controllers/event/listController',
 	/* modules */
 	var Lafete = Angular.module('lafete',['ngRoute']);
 
-	Lafete.value('Configuration', {
-		urls: {
-			all: '/api/events',
-			byId: '/api/events/{eventId}',
-			add: '/api/events',
-		}
-	});
-
 	/* services */
-	EventRepository.$inject = ['$http', 'Configuration'];
+	EventRepository.$inject = ['$http'];
 	Lafete.service('EventRepository', EventRepository);
 
-	//GuestRepository.$inject = ['$http', 'Configuration'];
+	GuestRepository.$inject = ['$http'];
 	Lafete.service('GuestRepository', GuestRepository);
 
 	/* controllers */

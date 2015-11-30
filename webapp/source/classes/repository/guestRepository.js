@@ -1,7 +1,7 @@
 define(['app/model/guest'], function(Guest) {
 	'use strict';
 
-	var GuestRepository = function($http, Configuration) {
+	var GuestRepository = function($http) {
 
 		this.urls = {
 			get: '/api/events/{eventId}/guests/{guestId}',

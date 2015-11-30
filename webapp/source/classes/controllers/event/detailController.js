@@ -3,11 +3,13 @@ define([], function() {
 
 	var EventDetailController = function($scope, $routeParams, EventRepository) {
 		this.scope = $scope;
+
+		var eventId = $routeParams.eventId;
 		EventRepository.get(
-			{ id:$routeParams.eventId }, 
+			eventId,
 			function(event) {
-				this.scope.event = event;	
-			}.bind(this), 
+				this.scope.event = event;
+			}.bind(this),
 			function() {}
 		);
 	}
