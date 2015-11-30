@@ -1,11 +1,11 @@
 define([], function() {
     'use strict';
 
-    var EditGuestController = function($scope, $routeParams, $location, EventRepository) {
+    var EditGuestController = function($scope, $routeParams, $location, GuestRepository) {
 
         this.scope = $scope;
 
-        EventRepository.get(
+        GuestRepository.get(
             { id:$routeParams.eventId },
             function(event) {
                 this.scope.event = event;
@@ -14,7 +14,7 @@ define([], function() {
         );
 
 
-        EventRepository.getGuest(
+        GuestRepository.get(
             { eventid:$routeParams.eventId },
             { id:$routeParams.guestId },
             function(event,guest) {
@@ -25,7 +25,7 @@ define([], function() {
 
 
         this.scope.updateGuest = function(Oldevent,newGuest) {
-            EventRepository.updateGuest(
+            GuestRepository.update(
                 Oldevent,newGuest,
                 function(event) {
                     $location.path('/events/' + $routeParams.eventId);

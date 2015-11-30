@@ -1,8 +1,8 @@
 define(['frameworks/angular', 'app/controllers/event/listController',
 		'app/controllers/event/detailController','app/controllers/event/newController',
-		'app/repository/eventRepository', 'app/controllers/guest/newController', 'app/controllers/guest/editController'
+		'app/repository/eventRepository','app/repository/guestRepository', 'app/controllers/guest/newController', 'app/controllers/guest/editController'
 		, 'libraries/angularRoute'],
-	function (Angular, EventListController, EventDetailController, NewEventController, EventRepository, NewGuestController, EditGuestController) {
+	function (Angular, EventListController, EventDetailController, NewEventController, EventRepository, GuestRepository, NewGuestController, EditGuestController) {
 	'use strict';
 
 	/* modules */
@@ -33,10 +33,10 @@ define(['frameworks/angular', 'app/controllers/event/listController',
 	NewEventController.$inject = ['$scope', '$location', 'EventRepository'];
 	Lafete.controller('NewEventController', NewEventController);
 
-	NewGuestController.$inject = ['$scope', '$routeParams', '$location', 'EventRepository'];
+	NewGuestController.$inject = ['$scope', '$routeParams', '$location', 'GuestRepository'];
 	Lafete.controller('NewGuestController', NewGuestController);
 
-	EditGuestController.$inject = ['$scope', '$routeParams', '$location', 'EventRepository'];
+	EditGuestController.$inject = ['$scope', '$routeParams', '$location', 'GuestRepository'];
 	Lafete.controller('EditGuestController', EditGuestController);
 
 	/* routes */
