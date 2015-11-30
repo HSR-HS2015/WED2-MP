@@ -31,9 +31,13 @@
 
 		<h3>Guests<a class="button add" href="#/events/{{event.id}}/new">&#10133;</a></h3>
 		<div data-ng-if="event.guests && event.guests.length > 0" ng-repeat="guest in event.guests">
+			<div data-ng-if="guest.canceled == false">
 			<p><b>Name:</b> {{guest.name}}</p>
 			<p><b>Contribution:</b> {{guest.contribution}}</p>
 			<p><b>Comment:</b> {{guest.comment}}</p>
-			<p><a class ="button edit" href="#/events/{{event.id}}/guests/{{guest.id}}/edit">Edit</a></p>
+			<p>{{guest.canceled}}</p>
+			<p><a class ="button edit" href="#/events/{{event.id}}/guests/{{guest.id}}/edit"><span class="glyphicon glyphicon-pencil"></span></a></p>
+			<a data-ng-click="cancel(guest)"> <span class="glyphicon glyphicon-remove-sign"></span></a>
+			</div>
 		</div>
 
