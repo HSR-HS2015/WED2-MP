@@ -13,9 +13,6 @@ define(['frameworks/angular', 'app/controllers/event/listController',
 			all: '/api/events',
 			byId: '/api/events/{eventId}',
 			add: '/api/events',
-			allGuests: 'api/events/{eventId}/guests',
-			guestbyId: 'api/events/{eventId}/guests/{guestId}',
-			addGuest: '/api/events/{eventId}/guests'
 		}
 	});
 

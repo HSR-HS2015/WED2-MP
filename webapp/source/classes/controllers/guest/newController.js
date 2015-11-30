@@ -1,32 +1,19 @@
-define([], function() {
+define(['app/model/guest'], function(Guest) {
     'use strict';
 
     var NewGuestController = function($scope, $routeParams, $location, EventRepository, GuestRepository) {
 
         this.scope = $scope;
 
-        EventRepository.get(
-            { id:$routeParams.eventId },
-            function(event) {
-                this.scope.event = event;
-            }.bind(this),
-            function() {}
-        );
+        var eventId = $routeParams.eventId;
 
-
-        this.scope.addGuest = function(Oldevent,newGuest) {
-            window.alert(Oldevent.guests.length);
-            if(Oldevent.guests.length < Oldevent.maximalAmountOfGuests) {
-                GuestRepository.add(
-                    Oldevent,newGuest,
-                    function(event) {
-                        $location.path('/events/' + $routeParams.eventId);
-                    }
-                    ,
-                    function() {}
-                );
-            }
-
+        this.scope.eventId = eventId;
+        this.scope.guest = new Guest();
+        this.scope.add = function(){
+            GuestRepository.add(eventId,$scope.guest, function(){
+                    $location.path('/events/'+eventId);
+                }
+            );
         };
     };
 
