@@ -3,7 +3,9 @@
 	&larr; <a href="#/">Events</a>
 </nav>
 <div class="row">
-<div class="col-xs-6"><h2>{{event.name}}</h2></div>
+<div class="col-xs-6"><h2>{{event.name}}
+	<a class ="button edit" href="#/events/{{event.id}}/edit">
+	<span class="glyphicon glyphicon-pencil"></span></a></h2></div>
 <div class="col-xs-6"><h2>{{filteredGuests.length}}
 	<span ng-if="filteredGuests.length > 1">Guests</span>
 	<span ng-if="filteredGuests.length <= 1">Guest</span>
