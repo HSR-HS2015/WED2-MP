@@ -40,7 +40,7 @@ define(['app/services/uuidService'], function(UUIDService) {
 			eventDTO.targetGroup,
 			eventDTO.contributionsDescription,
 			eventDTO.location,
-			eventDTO.times,
+			{'begin':new Date(eventDTO.times.begin),'end':new Date(eventDTO.times.end)},
 			eventDTO.maximalAmountOfGuests,
 			eventDTO.id
 		);

@@ -3,7 +3,7 @@
 	&larr; <a href="#/">Events</a>
 </nav>
 
-<h2>{{event.name}}</h2>
+<h2>{{event.name}}</h2><a class ="button edit" href="#/events/{{event.id}}/edit">Edit</a>
 
 
 	<p>{{event.description}}</p>
@@ -19,7 +19,7 @@
 	<h3 data-ng-if="event.contributionsDescription">Event contribution description</h3>
 	<p data-ng-if="event.contributionsDescription">{{event.contributionsDescription}}</p>
 
-	<h3>Location</h2>
+	<h3>Location</h3>
 		<p>
 			<i>{{event.location.name}}</i><br />
 			{{event.location.street}}<br />

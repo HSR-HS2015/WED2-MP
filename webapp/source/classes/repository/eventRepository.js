@@ -27,18 +27,16 @@ define(['app/model/event'], function(Event) {
 		};
 
 		/**
-		 * Find event by identifier
+		 * Find event by eventId
 		 *
-		 * @param string identifier
+		 * @param string eventId
 		 */
-		this.get = function(eventId, successCallback, errorCallback) {
+		this.get = function (eventId, successCallback) {
 			$http.get(this.urls.get.replace('{eventId}', eventId))
 				.success(function(eventDTO) {
 					successCallback(Event.createFromDTO(eventDTO));
-				})
-				.error(errorCallback);
-		};
-
+				});
+		}
 
 		/**
 		 * Add event
@@ -50,6 +48,18 @@ define(['app/model/event'], function(Event) {
 					successCallback(Event.createFromDTO(eventDTO));
 				})
 				.error(errorCallback);
+		};
+
+
+		/**
+		 * Update Event
+		 * @param Event event
+		 */
+		this.update = function(event,successCallback){
+			$http.post(this.urls.get.replace('{eventId}',event.id),event)
+				.success(function(){
+					successCallback(true);
+				});
 		};
 	};
 
