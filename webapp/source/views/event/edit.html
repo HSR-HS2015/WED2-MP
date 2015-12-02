@@ -2,7 +2,7 @@
 	&larr; <a href="#/">Events</a>
 </nav>
 <h2>Edit Event</h2>
-<form role="form">
+<form role="form" ng-submit="update()">
 	<div class="form-group">
 		<label for="name">name</label>
 		<input type="text" class="form-control" id="name" data-ng-model="event.name" required />
@@ -20,12 +20,12 @@
 
 	<div class="form-group">
 		<label for="group">Target group</label>
-		<input type="text" class="form-control" id="group" data-ng-model="event.targetGroup" />
+		<input type="text" class="form-control" id="group" data-ng-model="event.targetGroup" required />
 	</div>
 
 	<div class="form-group">
 		<label for="contribution">Event contribution description</label>
-		<input type="text" class="form-control" id="contribution" data-ng-model="event.contributionsDescription" />
+		<input type="text" class="form-control" id="contribution" data-ng-model="event.contributionsDescription" required />
 	</div>
 
 	<div class="form-group ">
@@ -71,6 +71,6 @@
 	</div>
 
 	<div class="form-group">
-		<button type="submit" class="btn btn-primary" data-ng-click="update()"/>Save</button>
+		<button type="submit" class="btn btn-primary"/>Save</button>
 	</div>
 </form>

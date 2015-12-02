@@ -1,6 +1,6 @@
 <h2>{{event.name}}</h2>
 <h2>Edit Guest</h2>
-<form role="form">
+<form role="form" ng-submit="update()">
     <div class="form-group">
         <label for="name">name</label>
         <input type="text"  id="name" class="form-control" data-ng-model="guest.name" required />
@@ -11,9 +11,9 @@
     </div>
     <div class="form-group">
         <label for="comment">comment</label>
-        <input type="text" id="comment" class="form-control" data-ng-model="guest.comment" required />
+        <input type="text" id="comment" class="form-control" data-ng-model="guest.comment" />
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" data-ng-click="update()"/>Save</button>
+        <button type="submit" class="btn btn-primary"/>Save</button>
     </div>
 </form>
