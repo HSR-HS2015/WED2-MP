@@ -1,47 +1,47 @@
 <nav>
-	&larr; <a href="#/">Events</a>
+	&larr; <a href="#/events/{{event.id}}">Events</a>
 </nav>
 <h2>Edit Event</h2>
 <form role="form" ng-submit="update()">
 	<div class="form-group">
 		<label for="name">name</label>
-		<input type="text" class="form-control" id="name" data-ng-model="event.name" required />
+		<input type="text" class="form-control" id="name" data-ng-model="event.name" maxlength="80" required />
 	</div>
 
 	<div class="form-group">
 		<label for="description">Description</label>
-		<input type="text" class="form-control" id="description" data-ng-model="event.description" required />
+		<input type="text" class="form-control" id="description" data-ng-model="event.description" maxlength="255" required />
 	</div>
 
 	<div class="form-group">
 		<label for="amount">Maximal amount of guests</label>
-		<input type="number" class="form-control" id="amount" data-ng-model="event.maximalAmountOfGuests" />
+		<input type="number" class="form-control" id="amount" data-ng-model="event.maximalAmountOfGuests" min="1" max="999" />
 	</div>
 
 	<div class="form-group">
 		<label for="group">Target group</label>
-		<input type="text" class="form-control" id="group" data-ng-model="event.targetGroup" required />
+		<input type="text" class="form-control" id="group" data-ng-model="event.targetGroup" maxlength="80" required />
 	</div>
 
 	<div class="form-group">
 		<label for="contribution">Event contribution description</label>
-		<input type="text" class="form-control" id="contribution" data-ng-model="event.contributionsDescription" required />
+		<input type="text" class="form-control" id="contribution" data-ng-model="event.contributionsDescription" maxlength="255" required />
 	</div>
 
 	<div class="form-group ">
 		<label>Location</label>
 		<div class="row">
 		<div class="col-md-3">
-		<input type="text" class="form-control" data-ng-model="event.location.name" placeholder="Name" required />
+		<input type="text" class="form-control" data-ng-model="event.location.name" placeholder="Name" maxlength="40" required />
 		</div>
 		<div class="col-md-3">
-		<input type="text" class="col-md-3 form-control" data-ng-model="event.location.street" placeholder="Street" required />
+		<input type="text" class="col-md-3 form-control" data-ng-model="event.location.street" placeholder="Street" maxlength="60" required />
 		</div>
 		<div class="col-md-3">
-		<input type="text" class="col-md-3 form-control" data-ng-model="event.location.plz" placeholder="ZIP Code" required/>
+		<input type="text" class="col-md-3 form-control" data-ng-model="event.location.plz" placeholder="ZIP Code" maxlength="4" required/>
 		</div>
 		<div class="col-md-3">
-		<input type="text" class="col-md-3 form-control" data-ng-model="event.location.city" placeholder="City" required/>
+		<input type="text" class="col-md-3 form-control" data-ng-model="event.location.city" placeholder="City" maxlength="20" required/>
 		</div>
 		</div>
 	</div>

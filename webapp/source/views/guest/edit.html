@@ -3,15 +3,15 @@
 <form role="form" ng-submit="update()">
     <div class="form-group">
         <label for="name">name</label>
-        <input type="text"  id="name" class="form-control" data-ng-model="guest.name" required />
+        <input type="text"  id="name" class="form-control" data-ng-model="guest.name" maxlength="20" required />
     </div>
     <div class="form-group">
         <label for="contribution">contribution</label>
-        <input type="text" id="contribution" class="form-control" data-ng-model="guest.contribution" required />
+        <input type="text" id="contribution" class="form-control" data-ng-model="guest.contribution"  maxlength="20" required />
     </div>
     <div class="form-group">
         <label for="comment">comment</label>
-        <input type="text" id="comment" class="form-control" data-ng-model="guest.comment" />
+        <input type="text" id="comment" class="form-control" data-ng-model="guest.comment" maxlength="80" />
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary"/>Save</button>
