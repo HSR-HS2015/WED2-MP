@@ -10,7 +10,7 @@ define(['app/model/event'], function(Event) {
         this.scope.event = new Event();
 
         this.scope.add = function(newEvent) {
-            
+
             /*
             newEvent.times.begin = new Date(
                 newEvent.times.begin.date.getFullYear(),

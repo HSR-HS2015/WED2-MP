@@ -9,7 +9,9 @@ define(['app/services/uuidService'], function(UUIDService) {
 		this.contributionsDescription = contributionsDescription;
 		this.location = location;
 		this.times = times;
-		this.maximalAmountOfGuests = maximalAmountOfGuests;
+		this.maximalAmountOfGuests = maximalAmountOfGuests || 2;
+
+
 
 		Object.defineProperty(this, 'begin', {
 			get: function() {
@@ -34,6 +36,10 @@ define(['app/services/uuidService'], function(UUIDService) {
 	 * Create Event object from data transfer object (json object)
 	 */
 	Event.createFromDTO = function(eventDTO) {
+
+
+		//window.alert(eventDTO.maximalAmountOfGuests);
+
 		var event = new Event(
 			eventDTO.name,
 			eventDTO.description,
