@@ -3,7 +3,7 @@ define(['app/model/guest'], function(Guest) {
 
     var NewGuestController = function($scope, $routeParams, $location, GuestRepository, EventRepository) {
 
-        this.scope = $scope;
+        this.scope = $scope
 
         var eventId = $routeParams.eventId;
 
@@ -11,33 +11,24 @@ define(['app/model/guest'], function(Guest) {
         this.scope.guest = new Guest();
         this.scope.add = function(){
 
-
-            var amountOfGuests = 0;
-            var e;
-
             EventRepository.get(eventId, function(event) {
-                //window.alert(event.maximalAmountOfGuests);
-                e = event;
+                var amountOfGuests = 0;
                event.guests.forEach(function (guest) {
                     if(!guest.canceled) {
                         amountOfGuests++;
                     }
                });
 
+                if(amountOfGuests < event.maximalAmountOfGuests) {
+                    GuestRepository.add(eventId,$scope.guest, function(){
+                            $location.path('/events/'+eventId);
+                        }
+                    );
+                } else {
+                    window.alert("maximal amount of guests reached");
+                }
+
             });
-
-            window.alert(amountOfGuests);
-
-            if(amountOfGuests < e.maximalAmountOfGuests) {
-                GuestRepository.add(eventId,$scope.guest, function(){
-                        $location.path('/events/'+eventId);
-                    }
-                );
-            } else {
-                window.alert("maximal amount of guests reached");
-            }
-
-
         };
     };
 
