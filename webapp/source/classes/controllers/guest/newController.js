@@ -1,7 +1,7 @@
 define(['app/model/guest'], function(Guest) {
     'use strict';
 
-    var NewGuestController = function($scope, $routeParams, $location, GuestRepository) {
+    var NewGuestController = function($scope, $routeParams, $location, GuestRepository, EventRepository) {
 
         this.scope = $scope;
 
@@ -10,6 +10,11 @@ define(['app/model/guest'], function(Guest) {
         this.scope.eventId = eventId;
         this.scope.guest = new Guest();
         this.scope.add = function(){
+
+            EventRepository.get(eventId, function(event) {
+                window.alert(event.maximalAmountOfGuests);
+            });
+
             GuestRepository.add(eventId,$scope.guest, function(){
                     $location.path('/events/'+eventId);
                 }
