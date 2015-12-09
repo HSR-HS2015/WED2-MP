@@ -48,25 +48,11 @@
 
 	<div class="formline">
 		<label>Date &amp; Times</label>
-		<div class="formline inline col-6-2-2">
-			<input type="date" data-ng-model="event.times.begin" placeholder="begin, e.g. 1990-12-30" required />
-
-			<select class="hours" data-ng-model="event.times.begin.time.hours"
-			 	data-ng-init="event.times.begin.time.hours = hours[12]"
-				data-ng-options="hour for hour in hours"></select>
-			<select class="minutes" data-ng-model="event.times.begin.time.minutes"
-			 	data-ng-init="event.times.begin.time.minutes = minutes[0]"
-				data-ng-options="minute for minute in minutes"></select>
+		<div class="form-group inline col-6-2-2">
+			<input ng-model="event.times.begin" type="datetime-local" required>
 		</div>
-		<div class="formline inline col-6-2-2">
-			<input  data-ng-model="event.times.end" placeholder="end, e.g. 1990-12-31"  type="date" required />
-
-			<select class="hours" data-ng-model="event.times.end.time.hours"
-			 	data-ng-init="event.times.end.time.hours = hours[13]"
-				data-ng-options="hour for hour in hours"></select>
-			<select class="minutes" data-ng-model="event.times.end.time.minutes"
-			 	data-ng-init="event.times.end.time.minutes = minutes[0]"
-				data-ng-options="minute for minute in minutes"></select>
+		<div class="form-group inline col-6-2-2">
+			<input ng-model="event.times.end" type="datetime-local" required>
 		</div>
 	</div>
 
