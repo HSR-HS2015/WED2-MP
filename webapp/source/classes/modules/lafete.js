@@ -25,7 +25,7 @@ define(['frameworks/angular', 'app/controllers/event/listController',
 	NewEventController.$inject = ['$scope', '$location', 'EventRepository'];
 	Lafete.controller('NewEventController', NewEventController);
 
-	NewGuestController.$inject = ['$scope', '$routeParams', '$location','GuestRepository'];
+	NewGuestController.$inject = ['$scope', '$routeParams', '$location','GuestRepository', 'EventRepository'];
 	Lafete.controller('NewGuestController', NewGuestController);
 
 	EditGuestController.$inject = ['$scope', '$routeParams', '$location', 'GuestRepository'];

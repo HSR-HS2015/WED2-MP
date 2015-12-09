@@ -10,6 +10,8 @@ define(['app/model/event'], function(Event) {
         this.scope.event = new Event();
 
         this.scope.add = function(newEvent) {
+
+            /*
             newEvent.times.begin = new Date(
                 newEvent.times.begin.date.getFullYear(),
                 newEvent.times.begin.date.getMonth(),
@@ -26,6 +28,7 @@ define(['app/model/event'], function(Event) {
                 newEvent.times.end.time.minutes,
                 0
             );
+            */
 
             EventRepository.add(
                 newEvent,

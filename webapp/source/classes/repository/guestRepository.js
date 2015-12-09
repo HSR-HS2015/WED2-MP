@@ -28,6 +28,9 @@ define(['app/model/guest'], function(Guest) {
 		 */
 
 		this.add = function(eventId,guest,successCallback) {
+
+
+
 			$http.post(this.urls.add.replace('{eventId}', eventId),guest)
 				.success(function() {
 					successCallback(true);
