@@ -1,10 +1,10 @@
-define(['tests/factories/guestFactory', 'app/model/guest',
+define(['tests/factories/guestFactory','tests/factories/eventFactory', 'app/model/guest',
     'app/repository/guestRepository', 'libraries/angularMocks'],
-    function (GuestFactory, Guest, GuestRepository, AngularMocks) {
+    function (GuestFactory, EventFactory, Guest, GuestRepository, AngularMocks) {
         'use strict';
 
         describe('GuestRepository', function() {
-            var guest, guestRepository, $http, $httpBackend;
+            var event,guest, guestRepository, $http, $httpBackend;
 
             beforeEach(AngularMocks.inject(function($injector) {
                 $http = $injector.get('$http');
@@ -13,6 +13,7 @@ define(['tests/factories/guestFactory', 'app/model/guest',
                 guestRepository = new GuestRepository($http);
                 guest = GuestFactory.createGuest(1);
 
+                event = EventFactory.createEvent(1);
 
                 $httpBackend.when('GET', '/api/events/1/guests/1').respond(guest);
                 $httpBackend.when('GET', '/api/events/1/guests/null').respond(404, 'Guest not found.');
@@ -47,14 +48,15 @@ define(['tests/factories/guestFactory', 'app/model/guest',
 
             });
 
-          /*  describe('add()', function() {
-    			it('inserts element', function() {
-    				guestRepository.add(1, guest, function(newGuest){
-    					expect(newGuest.id).toEqual(guest.id);
-    				}, function(){});
-    				$httpBackend.flush();
-    			});
-    		});*/
+
+            describe('add()', function() {
+                it('inserts element', function() {
+                    guestRepository.add(event.id, guest, function(newGuest){
+                        expect(newGuest.id).toEqual(guest.id);
+                    }, function(){});
+                    $httpBackend.flush();
+                });
+            });
 
         });
 

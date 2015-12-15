@@ -14,11 +14,12 @@ define(['app/model/guest'], function(Guest) {
 		 * @param Guest guest
 		 */
 
-		this.update = function(eventId,guest,successCallback) {
+		this.update = function(eventId,guest,successCallback,errorCallback) {
 			$http.post(this.urls.get.replace('{eventId}', eventId).replace('{guestId}', guest.id), guest)
 				.success(function () {
 					successCallback(true);
-				});
+				})
+				.error(errorCallback);
 		};
 
 		/**
@@ -27,14 +28,12 @@ define(['app/model/guest'], function(Guest) {
 		 * @param Guest guest
 		 */
 
-		this.add = function(eventId,guest,successCallback) {
-
-
-
+		this.add = function(eventId,guest,successCallback,errorCallback) {
 			$http.post(this.urls.add.replace('{eventId}', eventId),guest)
 				.success(function() {
-					successCallback(true);
-				});
+					successCallback(Guest.createFromDTO(guest));
+				})
+				.error(errorCallback);
 		};
 
 		/**
@@ -43,11 +42,12 @@ define(['app/model/guest'], function(Guest) {
 		 * @param Guest guest
 		 */
 
-		this.get = function (eventId, guestId, successCallback) {
+		this.get = function (eventId, guestId, successCallback,errorCallback) {
 			$http.get(this.urls.get.replace('{eventId}', eventId).replace('{guestId}', guestId))
 				.success(function(guestDTO){
 					successCallback(Guest.createFromDTO(guestDTO));
-				});
+				})
+				.error(errorCallback);
 		};
 	};
 
