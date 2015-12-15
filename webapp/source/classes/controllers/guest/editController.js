@@ -11,7 +11,7 @@ define([], function() {
 
         GuestRepository.get(eventId,guestId,function(guest){
             this.scope.guest = guest;
-        }.bind(this));
+        }.bind(this),function (){});
 
 
         this.scope.update = function(){

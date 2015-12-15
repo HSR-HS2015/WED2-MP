@@ -16,7 +16,7 @@ define(['app/model/guest'], function(Guest) {
 
 		this.update = function(eventId,guest,successCallback,errorCallback) {
 			$http.post(this.urls.get.replace('{eventId}', eventId).replace('{guestId}', guest.id), guest)
-				.success(function () {
+				.success(function (guest) {
 					successCallback(Guest.createFromDTO(guest));
 				})
 				.error(errorCallback);
@@ -30,14 +30,14 @@ define(['app/model/guest'], function(Guest) {
 
 		this.add = function(eventId,guest,successCallback,errorCallback) {
 			$http.post(this.urls.add.replace('{eventId}', eventId),guest)
-				.success(function() {
+				.success(function(guest) {
 					successCallback(Guest.createFromDTO(guest));
 				})
 				.error(errorCallback);
 		};
 
 		/**
-		 * Get All Guests of specific Event
+		 * Get a Guest of a specific Event
 		 * @param id eventId
 		 * @param Guest guest
 		 */

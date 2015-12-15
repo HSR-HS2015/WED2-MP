@@ -37,7 +37,7 @@ define(['app/model/event'], function(Event) {
 					successCallback(Event.createFromDTO(eventDTO));
 				})
 				.error(errorCallback);
-		}
+		};
 
 		/**
 		 * Add event
@@ -58,8 +58,8 @@ define(['app/model/event'], function(Event) {
 		 */
 		this.update = function(event,successCallback,errorCallback){
 			$http.post(this.urls.get.replace('{eventId}',event.id),event)
-				.success(function(){
-					successCallback(Guest.createFromDTO(event));
+				.success(function(event){
+					successCallback(Event.createFromDTO(event));
 				})
 				.error(errorCallback);
 		};

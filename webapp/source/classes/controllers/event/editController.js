@@ -9,7 +9,7 @@ define([], function() {
 
         this.scope.event = EventRepository.get(eventId,function(event){
             this.scope.event = event;
-        }.bind(this));
+        }.bind(this), function (){});
 
 
         this.scope.update = function(){
