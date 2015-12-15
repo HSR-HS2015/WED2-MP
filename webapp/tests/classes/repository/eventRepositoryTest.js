@@ -17,7 +17,8 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 			$httpBackend.when('GET', '/api/events/1').respond(event);
 			$httpBackend.when('GET', '/api/events/null').respond(404, 'Event not found.');
 			$httpBackend.when('GET', '/api/events/abcdedf').respond(404, 'Event not found.');
-
+			$httpBackend.when('POST', '/api/events').respond(event);
+      $httpBackend.when('POST', '/api/events/1').respond(event);
 			$httpBackend.when('GET', eventRepository.urls.all).respond({
 				events: events
 			});
@@ -80,28 +81,13 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 		});
 
 		describe('add()', function() {
-			it('inserts element', function() {
-				var status1 = eventRepository.add(event);
-				expect(status1).toBe(true);
-			});
-
-			describe('same element again', function() {
-				var size, status2;
-
-				beforeEach(function() {
-					eventRepository.add(event);
-
-					size = eventRepository.events.length;
-					status2 = eventRepository.add(event);
+					it('inserts element', function() {
+						eventRepository.add(event, function(newEvent){
+							expect(newEvent.id).toEqual(event.id);
+						}, function(){});
+						$httpBackend.flush();
+					});
 				});
 
-				it('doesn\'t affect repository size', function() {
-					expect(eventRepository.events.length).toBe(size);
-				});
-				it('returns false', function() {
-					expect(status2).toBe(false);
-				});
-			});
-		});
 	});
 });
