@@ -89,5 +89,16 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 					});
 				});
 
+		describe('update()', function() {
+			it('update an event', function() {
+				eventRepository.update(event, function(updatedEvent){
+					expect(updatedEvent.id).toEqual(event.id);
+				}, function(){});
+				$httpBackend.flush();
+			});
+		});
+
+
+
 	});
 });

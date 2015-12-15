@@ -18,6 +18,7 @@ define(['tests/factories/guestFactory','tests/factories/eventFactory', 'app/mode
                 $httpBackend.when('GET', '/api/events/1/guests/1').respond(guest);
                 $httpBackend.when('GET', '/api/events/1/guests/null').respond(404, 'Guest not found.');
                 $httpBackend.when('POST','/api/events/1/guests').respond(guest);
+                $httpBackend.when('POST','/api/events/1/guests/1').respond(guest);
             }));
 
             afterEach(function() {
@@ -58,11 +59,21 @@ define(['tests/factories/guestFactory','tests/factories/eventFactory', 'app/mode
                 });
             });
 
+
+
+            describe('update()', function() {
+                it('update a guest', function() {
+                    guestRepository.update(event.id,guest, function(updatedGuest){
+                        expect(updatedGuest.id).toEqual(guest.id);
+                    }, function(){});
+                    $httpBackend.flush();
+                });
+            });
+
+
+
+
         });
-
-
-
-
 
 
     });
