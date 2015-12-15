@@ -17,7 +17,7 @@ define(['app/model/guest'], function(Guest) {
 		this.update = function(eventId,guest,successCallback,errorCallback) {
 			$http.post(this.urls.get.replace('{eventId}', eventId).replace('{guestId}', guest.id), guest)
 				.success(function () {
-					successCallback(true);
+					successCallback(Guest.createFromDTO(guest));
 				})
 				.error(errorCallback);
 		};
