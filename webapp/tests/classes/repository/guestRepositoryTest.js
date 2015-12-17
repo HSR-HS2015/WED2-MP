@@ -28,9 +28,12 @@ define(['tests/factories/guestFactory','tests/factories/eventFactory', 'app/mode
 
             describe('get()', function() {
                 describe('by object id', function() {
+
                     it('returns the object', function() {
+                        $httpBackend.expectGET('/api/events/1/guests/1');
                         guestRepository.get(1, guest.id, function(newGuest) {
                             expect(guest.id).toEqual(newGuest.id);
+                            expect(newGuest).toEqual(jasmine.any(Guest));
                         }, function(){});
                         $httpBackend.flush();
                     });
@@ -38,6 +41,7 @@ define(['tests/factories/guestFactory','tests/factories/eventFactory', 'app/mode
 
                 describe('by inexistent object id', function() {
                     it('returns null', function() {
+                        $httpBackend.expectGET('/api/events/1/guests/null');
                         guestRepository.get(1, null, function() {
                         }, function(error) {
                             expect(error).toEqual('Guest not found.');
@@ -52,8 +56,10 @@ define(['tests/factories/guestFactory','tests/factories/eventFactory', 'app/mode
 
             describe('add()', function() {
                 it('inserts element', function() {
+                    $httpBackend.expectPOST('/api/events/1/guests', guest).respond(guest);
                     guestRepository.add(event.id, guest, function(newGuest){
                         expect(newGuest.id).toEqual(guest.id);
+                        expect(newGuest).toEqual(jasmine.any(Guest));
                     }, function(){});
                     $httpBackend.flush();
                 });
@@ -63,8 +69,10 @@ define(['tests/factories/guestFactory','tests/factories/eventFactory', 'app/mode
 
             describe('update()', function() {
                 it('update a guest', function() {
+                    $httpBackend.expectPOST('/api/events/1/guests/1', guest).respond(guest);
                     guestRepository.update(event.id,guest, function(updatedGuest){
                         expect(updatedGuest.id).toEqual(guest.id);
+                        expect(updatedGuest).toEqual(jasmine.any(Guest));
                     }, function(){});
                     $httpBackend.flush();
                 });

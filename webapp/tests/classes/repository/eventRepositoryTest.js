@@ -18,7 +18,7 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 			$httpBackend.when('GET', '/api/events/null').respond(404, 'Event not found.');
 			$httpBackend.when('GET', '/api/events/abcdedf').respond(404, 'Event not found.');
 			$httpBackend.when('POST', '/api/events').respond(event);
-      $httpBackend.when('POST', '/api/events/1').respond(event);
+      		$httpBackend.when('POST', '/api/events/1').respond(event);
 			$httpBackend.when('GET', eventRepository.urls.all).respond({
 				events: events
 			});
@@ -32,8 +32,10 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 		describe('get()', function() {
 			describe('by object id', function() {
 				it('returns the object', function() {
+					$httpBackend.expectGET('/api/events/1');
 					eventRepository.get(event.id, function(newEvent){
 						expect(event.id).toEqual(newEvent.id);
+						expect(newEvent).toEqual(jasmine.any(Event));
 					}, function(){});
 					$httpBackend.flush();
 				});
@@ -58,6 +60,7 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 		describe('all()', function() {
 
 			it('returns an Array', function() {
+				$httpBackend.expectGET(eventRepository.urls.all);
 				eventRepository.all(function(events) {
 					expect(events).toEqual(jasmine.any(Array));
 				}, function(){});
@@ -65,6 +68,7 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 			});
 
 			it('returns two events', function() {
+				$httpBackend.expectGET(eventRepository.urls.all);
 				eventRepository.all(function(events) {
 					expect(events.length).toBe(2);
 				}, function(){});
@@ -72,6 +76,7 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 			});
 
 			it('returns real javascript objects', function() {
+				$httpBackend.expectGET(eventRepository.urls.all);
 				eventRepository.all(function(events) {
 					expect(events[0]).toEqual(jasmine.any(Event));
 					expect(events[1]).toEqual(jasmine.any(Event));
@@ -81,18 +86,23 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 		});
 
 		describe('add()', function() {
-					it('inserts element', function() {
-						eventRepository.add(event, function(newEvent){
-							expect(newEvent.id).toEqual(event.id);
-						}, function(){});
-						$httpBackend.flush();
-					});
+			it('inserts element', function() {
+					$httpBackend.expectPOST('/api/events', event).respond(event);
+					eventRepository.add(event, function(newEvent){
+						expect(newEvent.id).toEqual(event.id);
+						expect(newEvent).toEqual(jasmine.any(Event));
+						console.log(newEvent);
+					}, function(){});
+					$httpBackend.flush();
 				});
+			});
 
 		describe('update()', function() {
 			it('update an event', function() {
+				$httpBackend.expectPOST('/api/events/1', event).respond(event);
 				eventRepository.update(event, function(updatedEvent){
 					expect(updatedEvent.id).toEqual(event.id);
+					expect(updatedEvent).toEqual(jasmine.any(Event));
 				}, function(){});
 				$httpBackend.flush();
 			});
